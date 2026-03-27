@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- ============================================================
+       META TAGS - Configuración básica del documento
+       ============================================================ -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sitio web oficial de la Universidad Dr. Andrés Bello" />
+  <title>Universidad Dr. Andrés Bello</title>
+
+  <!-- ============================================================
+       HOJA DE ESTILOS PRINCIPAL
+       Enlace al archivo CSS externo donde se controla todo el diseño
+       ============================================================ -->
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- ============================================================
+       GOOGLE FONTS - Tipografía moderna (Inter)
+       ============================================================ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- ============================================================
+       FONT AWESOME - Íconos para el pie de página
+       ============================================================ -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       HEADER - Encabezado principal de la página
+       Contiene el logo de la universidad y la fecha actual
+       ============================================================ -->
+  <header class="site-header">
+
+    <!-- Contenedor izquierdo: logo + botones de enlace juntos -->
+    <div class="header-izquierda">
+
+      <!-- ----------------------------------------------------------
+           MENÚ HAMBURGUESA
+           ➤ Al hacer clic se despliega el menú con los dos enlaces
+           ---------------------------------------------------------- -->
+      <!-- ----------------------------------------------------------
+           LOGO DE LA UNIVERSIDAD
+           ➤ Para agregar tu logo: reemplaza el src="" con la ruta
+             de tu imagen, por ejemplo: src="img/logo.png"
+           ➤ También puedes cambiar el texto alt="" con el nombre real
+           ---------------------------------------------------------- -->
+      <div class="header-logo">
+        <!-- Al hacer clic en el logo se recarga la página -->
+        <a href="javascript:location.reload()" title="Recargar página" style="cursor:pointer;">
+          <img
+            src="img/Logo de La Unab.webp"
+            alt="Logo Universidad Dr. Andrés Bello"
+            id="logo-universidad"
+            class="logo-img"
+          />
+        </a>
+        <!-- Texto de respaldo visible mientras no haya imagen de logo -->
+        
+      </div>
+
+    </div>
+    <!-- Fin contenedor izquierdo -->
+
+    <!-- ----------------------------------------------------------
+         MENÚ DESPLEGABLE
+         ➤ Cambia el texto y href="#" de cada enlace por los reales
+         ---------------------------------------------------------- -->
+    <!-- ----------------------------------------------------------
+         FECHA DEL DÍA
+         La fecha se genera automáticamente con JavaScript
+         No necesitas modificar este bloque
+         ---------------------------------------------------------- -->
+    <div class="header-fecha">
+      <span id="fecha-actual"></span>
+    </div>
+
+
+  </header>
+  <!-- FIN HEADER -->
+
+
+  <!-- ============================================================
+       SECCIÓN HERO - Área principal de la página
+       ➤ Para agregar imagen de fondo: abre el archivo css/styles.css
+         y busca el comentario "IMAGEN DE FONDO DEL HERO"
+         Reemplaza el valor de background-image con la URL de tu foto
+         Ejemplo: background-image: url('../img/campus.jpg');
+       ============================================================ -->
+  <main class="hero-section">
+
+    <!-- Capa de superposición semitransparente sobre la imagen de fondo -->
+    <div class="hero-overlay">
+
+      <!-- --------------------------------------------------------
+           CONTENIDO CENTRAL DEL HERO
+           Título de la universidad y botones de navegación
+           -------------------------------------------------------- -->
+      <div class="hero-content">
+
+        <!-- Nombre de la universidad -->
+         <h1 class="universidad-titulo">Bienvenidos a</h1>
+        <h1 class="universidad-titulo">Universidad Dr. Andrés Bello</h1>
+
+        <!-- ------------------------------------------------------
+             BOTONES DE NAVEGACIÓN PRINCIPAL
+             ➤ Para agregar los links reales, reemplaza el valor
+               del atributo href="#" con la URL correspondiente
+               Ejemplo: href="https://noticias.unab.edu/"
+             ------------------------------------------------------ -->
+        <div class="botones-principales">
+
+          <!-- Botón 1: Noticias -->
+          <!-- ➤ REEMPLAZA href="#" con el link real de noticias -->
+          <a href="https://www.unab.edu.sv/san-salvador/" class="btn-principal" id="btn-noticias">
+            Noticias
+          </a>
+
+          <!-- Botón 2: Portal del Estudiante -->
+          <!-- ➤ REEMPLAZA href="#" con el link real del portal -->
+          <a href="https://portal.unab.edu.sv/cgi-bin/index.cgi" class="btn-principal" id="btn-portal">
+            Portal de estudiante
+          </a>
+
+          <!-- Botón 3: Campus Virtual -->
+          <!-- ➤ REEMPLAZA href="#" con el link real del campus -->
+          <a href="https://eduvirtual.unab.edu.sv/my/" class="btn-principal" id="btn-campus">
+            Campus virtual
+          </a>
+
+        </div>
+        <!-- FIN BOTONES -->
+
+      </div>
+      <!-- FIN HERO CONTENT -->
+
+    </div>
+    <!-- FIN OVERLAY -->
+
+  </main>
+  <!-- FIN HERO SECTION -->
+
+
+  <!-- ============================================================
+       FOOTER - Pie de página
+       Contiene los íconos de redes sociales / contacto
+       ============================================================ -->
+  <footer class="site-footer">
+
+    <!-- ----------------------------------------------------------
+         ÍCONOS DE REDES DE CONTACTO
+         ➤ Para cada ícono, reemplaza href="#" con el link real
+           Ejemplo de Facebook: href="https://facebook.com/tuuniversidad"
+         ➤ Para cambiar un ícono, modifica la clase del <i>
+           Consulta: https://fontawesome.com/icons
+         ---------------------------------------------------------- -->
+    <div class="redes-iconos">
+
+      <!-- Ícono 1: Facebook / Me gusta -->
+      <!-- ➤ REEMPLAZA href="#" con el link de Facebook -->
+      <a href="https://www.facebook.com/UNABElSalvador" class="icono-red" id="link-facebook" aria-label="Facebook">
+        <i class="fa-brands fa-facebook-f"></i>
+      </a>
+
+      <!-- Ícono 2: Sitio web / Globo -->
+      <!-- ➤ REEMPLAZA href="#" con el link del sitio web oficial -->
+      <a href="#" class="icono-red" id="link-web" aria-label="Sitio web">
+        <i class="fa-solid fa-globe"></i>
+      </a>
+
+      <!-- Ícono 3: Mensaje / Chat -->
+      <!-- ➤ REEMPLAZA href="#" con el link de mensajería o WhatsApp -->
+      <a href="#" class="icono-red" id="link-mensaje" aria-label="Mensajes">
+        <i class="fa-solid fa-comment-dots"></i>
+      </a>
+
+      <!-- Ícono 4: Correo electrónico -->
+      <!-- ➤ REEMPLAZA href="#" con mailto:tucorreo@unab.edu -->
+      <a href="#" class="icono-red" id="link-correo" aria-label="Correo">
+        <i class="fa-solid fa-envelope"></i>
+      </a>
+
+    </div>
+    <!-- FIN ÍCONOS -->
+
+    <!-- Texto debajo de los íconos -->
+    <p class="redes-label">Nos puedes contactar</p>
+
+  </footer>
+  <!-- FIN FOOTER -->
+
+
+  <!-- ============================================================
+       JAVASCRIPT PRINCIPAL
+       Se carga al final del body para mejor rendimiento
+       ============================================================ -->
+  <script src="js/main.js"></script>
+
+</body>
+</html>

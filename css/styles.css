@@ -1,0 +1,495 @@
+/* ================================================================
+   UNIVERSIDAD DR. ANDRÉS BELLO - Hoja de Estilos Principal
+   Archivo: css/styles.css
+   ================================================================ */
+
+
+/* ================================================================
+   VARIABLES CSS - Colores, fuentes y tamaños globales
+   Modifica estas variables para cambiar el diseño general
+   ================================================================ */
+:root {
+  /* Colores principales */
+  --color-fondo-header: rgba(255, 255, 255, 0.92);  /* Fondo del header */
+  --color-fondo-footer: rgba(255, 255, 255, 0.92);  /* Fondo del footer */
+  --color-btn:          #3a3a3a;                    /* Fondo de los botones */
+  --color-btn-hover:    #1a1a1a;                    /* Fondo al pasar el cursor sobre botones */
+  --color-texto-titulo: #ffffff;                    /* Color del título principal */
+  --color-texto-header: #333333;                    /* Color del texto en el header */
+  --color-iconos:       #3a3a3a;                    /* Color de los íconos del footer */
+
+  /* Fuente principal */
+  --fuente-principal: 'Inter', sans-serif;
+
+  /* Sombras */
+  --sombra-suave: 0 4px 20px rgba(0, 0, 0, 0.12);
+  --sombra-btn:   0 4px 15px rgba(0, 0, 0, 0.25);
+}
+
+
+/* ================================================================
+   RESET Y BASE
+   Elimina márgenes y paddings por defecto del navegador
+   ================================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;           /* La página ocupa toda la altura de la pantalla */
+  font-family: var(--fuente-principal);
+  scroll-behavior: smooth;
+}
+
+/* Quita el subrayado por defecto de todos los enlaces */
+a {
+  text-decoration: none;
+}
+
+
+/* ================================================================
+   LAYOUT GENERAL - Estructura de la página
+   Distribuye header, main y footer usando flexbox vertical
+   ================================================================ */
+body {
+  display: flex;
+  flex-direction: column;  /* Apila los elementos verticalmente */
+  min-height: 100vh;       /* Mínimo alto: toda la pantalla */
+}
+
+
+/* ================================================================
+   HEADER - Barra superior con logo y fecha
+   ================================================================ */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;  /* Logo a la izquierda, fecha a la derecha */
+  padding: 12px 30px;
+  background-color: var(--color-fondo-header);
+  backdrop-filter: blur(10px);     /* Efecto vidrio sobre la imagen de fondo */
+  box-shadow: var(--sombra-suave);
+  position: relative;
+  z-index: 100;                    /* Siempre encima de otros elementos */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* ------------------------------------------------------------------
+   CONTENEDOR IZQUIERDO: agrupa logo + botones de enlace
+   ------------------------------------------------------------------ */
+.header-izquierda {
+  display: flex;
+  align-items: center;
+  gap: 12px;          /* Espacio entre el logo y los botones */
+}
+
+/* ------------------------------------------------------------------
+   ÁREA DEL LOGO
+   ------------------------------------------------------------------ */
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+/* Imagen del logo
+   ➤ El logo aparecerá aquí cuando agregues el src en el HTML
+   ➤ Ajusta el max-height si tu logo es más grande o pequeño */
+.logo-img {
+  max-height: 60px;    /* Alto máximo del logo */
+  max-width: 180px;    /* Ancho máximo del logo */
+  object-fit: contain; /* Escala sin deformar */
+  display: block;
+}
+
+/* Texto placeholder visible mientras no hay imagen de logo
+   Una vez que agregues tu imagen, puedes ocultar esto cambiando
+   display: none; en .logo-placeholder-text */
+.logo-placeholder-text {
+  font-size: 0.85rem;
+  color: #999;
+  font-style: italic;
+  border: 1px dashed #ccc;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+/* ------------------------------------------------------------------
+   BOTONES TRANSPARENTES DEL HEADER
+   ------------------------------------------------------------------ */
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ================================================================
+   MENÚ HAMBURGUESA
+   ================================================================ */
+
+/* Botón hamburguesa */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 42px;
+  height: 42px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 6px;
+  transition: background 0.2s ease;
+  flex-shrink: 0;
+}
+
+.hamburger:hover {
+  background: rgba(0, 0, 0, 0.07);
+}
+
+/* Las tres líneas del ícono hamburguesa */
+.ham-linea {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: var(--color-texto-header);
+  border-radius: 2px;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity   0.25s ease,
+              width     0.3s ease;
+  transform-origin: center;
+}
+
+/* Animación al abrir: convierte las 3 líneas en una X */
+.hamburger.abierto .ham-linea:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.hamburger.abierto .ham-linea:nth-child(2) {
+  opacity: 0;
+  width: 0;
+}
+.hamburger.abierto .ham-linea:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ================================================================
+   MENÚ DESPLEGABLE
+   ================================================================ */
+.menu-desplegable {
+  position: absolute;
+  top: 100%;           /* Justo debajo del header */
+  left: 0;
+  width: 220px;
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(12px);
+  border-radius: 0 0 14px 14px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.14);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-top: none;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 0;
+  z-index: 200;
+
+  /* Estado cerrado */
+  opacity: 0;
+  transform: translateY(-12px);
+  pointer-events: none;
+  transition: opacity    0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              transform  0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Estado abierto */
+.menu-desplegable.abierto {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+
+/* Cada enlace dentro del menú */
+.menu-item {
+  display: block;
+  padding: 13px 22px;
+  color: var(--color-texto-header);
+  font-family: var(--fuente-principal);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: background 0.18s ease, color 0.18s ease, padding-left 0.18s ease;
+}
+
+.menu-item:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: #111;
+  padding-left: 28px;   /* Pequeño desplazamiento al hacer hover */
+}
+
+/* Separador entre ítems */
+.menu-item + .menu-item {
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* Animación escalonada de los ítems al aparecer */
+.menu-desplegable.abierto .menu-item:nth-child(1) {
+  animation: slideItem 0.25s ease 0.05s both;
+}
+.menu-desplegable.abierto .menu-item:nth-child(2) {
+  animation: slideItem 0.25s ease 0.12s both;
+}
+
+@keyframes slideItem {
+  from { opacity: 0; transform: translateX(-10px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ------------------------------------------------------------------
+   FECHA DEL DÍA
+   ------------------------------------------------------------------ */
+.header-fecha {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-texto-header);
+  letter-spacing: 0.02em;
+}
+
+
+/* ================================================================
+   HERO SECTION - Sección principal de la página
+   ================================================================ */
+.hero-section {
+  flex: 1;               /* Ocupa todo el espacio disponible entre header y footer */
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* ================================================================
+     ★★★ IMAGEN DE FONDO DEL HERO ★★★
+     ================================================================
+     ➤ PASO 1: Copia tu foto dentro de la carpeta:
+              c:\xampp\htdocs\unab\img\
+
+     ➤ PASO 2: Escribe el nombre de tu foto aquí abajo, por ejemplo:
+              url('img/mi-foto.jpg')
+              url('img/campus.png')
+              url('img/fondo.webp')
+
+     ➤ Formatos soportados: .jpg  .jpeg  .png  .webp  .gif
+
+     ➤ PASO 3: Guarda el archivo y recarga la página en el navegador.
+     ================================================================ */
+  background-image: url('https://apps.unab.edu.sv/img/casaabierta/san_salvador.webp');   /* ← ESCRIBE AQUÍ EL NOMBRE DE TU FOTO */
+  background-size: cover;              /* La imagen cubre todo el fondo */
+  background-position: center center;  /* La imagen queda centrada */
+  background-repeat: no-repeat;        /* No se repite */
+  background-attachment: fixed;        /* Efecto parallax al hacer scroll */
+  background-color: #c8d8e8;          /* Color gris de respaldo si no hay foto */
+  min-height: calc(100vh - 140px);
+}
+
+/* Capa de superposición semitransparente
+   Oscurece levemente la imagen para que el texto sea legible
+   ➤ Ajusta el valor rgba(0,0,0, X) donde X va de 0 (sin sombra) a 1 (negro total) */
+.hero-overlay {
+  position: absolute;
+  inset: 0;                         /* Cubre todo el hero-section */
+  background: rgba(0, 0, 0, 0.35); /* ← Ajusta la oscuridad aquí */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ------------------------------------------------------------------
+   CONTENIDO CENTRAL DEL HERO
+   ------------------------------------------------------------------ */
+.hero-content {
+  text-align: center;
+  padding: 40px 30px;
+  position: relative;
+  z-index: 10;
+  animation: fadeInUp 0.8s ease forwards; /* Animación de entrada */
+}
+
+/* Título principal - Nombre de la universidad */
+.universidad-titulo {
+  font-size: clamp(2rem, 5vw, 3.5rem); /* Tamaño responsivo */
+  font-weight: 800;
+  color: var(--color-texto-titulo);
+  line-height: 1.2;
+  margin-bottom: 40px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  letter-spacing: -0.02em;
+}
+
+
+/* ================================================================
+   BOTONES DE NAVEGACIÓN PRINCIPAL
+   ================================================================ */
+.botones-principales {
+  display: flex;
+  flex-wrap: wrap;           /* Los botones pasan a la siguiente línea en pantallas pequeñas */
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Estilo base de cada botón */
+.btn-principal {
+  display: inline-block;
+  padding: 14px 32px;
+  background-color: var(--color-btn);
+  color: #ffffff;
+  font-family: var(--fuente-principal);
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  box-shadow: var(--sombra-btn);
+  transition: all 0.25s ease; /* Transición suave en hover */
+  min-width: 160px;
+  text-align: center;
+}
+
+/* Efecto al pasar el cursor sobre los botones */
+.btn-principal:hover {
+  background-color: var(--color-btn-hover);
+  transform: translateY(-3px);             /* Sube ligeramente */
+  box-shadow: 0 8px 25px rgba(0,0,0,0.35);
+  border-color: rgba(255,255,255,0.2);
+}
+
+/* Efecto al hacer clic en los botones */
+.btn-principal:active {
+  transform: translateY(-1px);
+  box-shadow: var(--sombra-btn);
+}
+
+
+/* ================================================================
+   FOOTER - Pie de página con íconos de redes
+   ================================================================ */
+.site-footer {
+  background-color: var(--color-fondo-footer);
+  backdrop-filter: blur(10px);
+  padding: 24px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+  border-top: 1px solid rgba(0,0,0,0.07);
+}
+
+/* Contenedor de los íconos de redes */
+.redes-iconos {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Cada ícono individual */
+.icono-red {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;                   /* Forma circular */
+  background-color: transparent;
+  color: var(--color-iconos);
+  font-size: 1.5rem;
+  transition: all 0.25s ease;
+  border: 2px solid transparent;
+}
+
+/* Efecto al pasar el cursor sobre los íconos */
+.icono-red:hover {
+  background-color: var(--color-btn);
+  color: #ffffff;
+  transform: translateY(-4px) scale(1.1);
+  border-color: var(--color-btn);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+
+/* Texto "Redes de contacto" */
+.redes-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #777;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+
+/* ================================================================
+   ANIMACIONES
+   Efectos de entrada para los elementos del hero
+   ================================================================ */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* ================================================================
+   DISEÑO RESPONSIVO - Adaptación para pantallas pequeñas
+   ================================================================ */
+
+/* Tablets (máximo 768px de ancho) */
+@media (max-width: 768px) {
+  .site-header {
+    padding: 10px 20px;
+  }
+
+  .universidad-titulo {
+    font-size: 2rem;
+    margin-bottom: 28px;
+  }
+
+  .botones-principales {
+    flex-direction: column; /* Los botones se apilan verticalmente */
+    gap: 12px;
+  }
+
+  .btn-principal {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+/* Móviles (máximo 480px de ancho) */
+@media (max-width: 480px) {
+  .site-header {
+    padding: 8px 16px;
+  }
+
+  .logo-img {
+    max-height: 45px;
+  }
+
+  .header-fecha {
+    font-size: 0.8rem;
+  }
+
+  .universidad-titulo {
+    font-size: 1.7rem;
+  }
+
+  .redes-iconos {
+    gap: 20px;
+  }
+}
